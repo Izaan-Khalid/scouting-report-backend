@@ -4,7 +4,7 @@ from services.team_service import get_all_teams
 
 router = APIRouter()
 
-@router.get("{team_a_id}/vs/{team_b_id}")
+@router.get("/{team_a_id}/vs/{team_b_id}")
 def matchups(team_a_id: str, team_b_id: str):
     teams = get_all_teams()
 
