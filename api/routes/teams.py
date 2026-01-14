@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from services.team_service import get_all_teams
 from main import build_report
+from services.player_service import get_team_players
 
 router = APIRouter()
 
@@ -85,3 +86,10 @@ def team_overall(team_id: str):
         "maps": maps,
         "draft": draft
     }
+
+@router.get("/{team_id}/players")
+def team_players(team_id: str):
+    players = get_team_players(team_id)
+    if not players:
+        raise HTTPException(status_code=404, detail="No player data found")
+    return players
