@@ -1,4 +1,6 @@
 from fastapi import APIRouter, HTTPException
+
+from services.insight import generate_insight
 from services.team_service import get_all_teams
 from main import build_report
 from services.player_service import get_team_players
@@ -81,10 +83,14 @@ def team_overall(team_id: str):
         ]
     }
 
+    # ---------- Insights ----------
+    insights = generate_insight(report)
+
     return {
         "overview": overview,
         "maps": maps,
-        "draft": draft
+        "draft": draft,
+        "insights": insights
     }
 
 @router.get("/{team_id}/players")
