@@ -3,7 +3,7 @@ def generate_insight(report: dict) -> dict:
     insights = {
         "map_pool": [],
         "strategy": [],
-        "composition": [],
+        "compositions": [],
     }
 
     ov = report["overall"]
